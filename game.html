@@ -1,0 +1,22 @@
+<link rel="stylesheet" type="text/css" href="./maze.css">
+
+<div id="maze_container">
+
+</div>
+
+<script src="./maze.js"></script>
+<script src="./mazebuilder.js"></script>
+<script>
+
+  let Maze = new MazeBuilder(16, 12);
+  Maze.placeKey();
+  Maze.display("maze_container");
+
+</script>
+<script>
+
+  window.addEventListener("DOMContentLoaded", function(e) {
+    var maze = new Mazing("maze");
+  }, false);
+
+</script>
