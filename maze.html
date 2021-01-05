@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="./maze.css">
+    <link rel="stylesheet" type="text/css" href="./vote.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
@@ -16,31 +17,26 @@
 
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
-            <!-- <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
-      <a class="navbar-brand" href="#"></a>
-    </div> -->
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a class="game-name" href="#">MazeGo!</a></li>
-                    <!-- <li><a href="#">About</a></li>
-        <li><a href="#">Projects</a></li>
-        <li><a href="#">Contact</a></li> -->
+                    <li class="active"><a class="game-logo" href="#">MazeGo!</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><span class="fa fa-facebook"></span>Share</a></li>
+                    <li>
+                        <a href="https://www.facebook.com/sharer/sharer.php?
+                    app_id=701373587232785&sdk=joey&u=http://127.0.0.1:8000
+                    /&display=popup&ref=plugin&src=share_button"
+                            onclick="return !window.open(this.href, 'Facebook', 'width=640,height=580')">
+                            <span class="fa fa-facebook"></span>Share</a>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
 
     <div class="container text-center">
-        <div class=" row content">
-            <!-- <div class="col-sm-1 sidenav"></div> -->
+        <div class="row content">
             <div class="col-sm-8 text-left">
                 <div id="maze_container">
 
@@ -48,16 +44,96 @@
             </div>
             <div class="col-sm-4 sidenav">
                 <div id="large-space"></div>
-                <div id="try-again" class="button btn">Try Again</div>
+                <a href="#" id="try-again" class="action-button shadow animate blue">Try Again</a>
                 <div id="space"></div>
-                <div id="new-game" class="button btn">New Game</div>
+                <a href="#" id="try-again" class="action-button shadow animate blue">New Game</a>
             </div>
         </div>
     </div>
+    <div class="container rating_container">
+        <span class="heading">User Rating</span>
+        <span id="rating_button">
+            <input type="radio" name="rating" value="1" class="fa fa-star" id="rate_1"></input>
+            <input type="radio" name="rating" value="2" class="fa fa-star" id="rate_2"></input>
+            <input type="radio" name="rating" value="3" class="fa fa-star" id="rate_3"></input>
+            <input type="radio" name="rating" value="4" class="fa fa-star" id="rate_4"></input>
+            <input type="radio" name="rating" value="5" class="fa fa-star" id="rate_5"></input>
+        </span>
+        <p>
+        <div id="avg_star" style="display: inline"></div> average based on
+        <div id="review_nos" style="display: inline"></div> reviews.</p>
+        <hr style="border:3px solid #f1f1f1">
+
+        <div class="row">
+            <div class="side">
+                <div>5 star</div>
+            </div>
+            <div class="middle">
+                <div class="bar-container">
+                    <div class="bar-5"></div>
+                </div>
+            </div>
+            <div class="side right">
+                <div id="no_rate_5">150</div>
+            </div>
+            <div class="side">
+                <div>4 star</div>
+            </div>
+            <div class="middle">
+                <div class="bar-container">
+                    <div class="bar-4"></div>
+                </div>
+            </div>
+            <div class="side right">
+                <div id="no_rate_4">63</div>
+            </div>
+            <div class="side">
+                <div>3 star</div>
+            </div>
+            <div class="middle">
+                <div class="bar-container">
+                    <div class="bar-3"></div>
+                </div>
+            </div>
+            <div class="side right">
+                <div id="no_rate_3">15</div>
+            </div>
+            <div class="side">
+                <div>2 star</div>
+            </div>
+            <div class="middle">
+                <div class="bar-container">
+                    <div class="bar-2"></div>
+                </div>
+            </div>
+            <div class="side right">
+                <div id="no_rate_2">6</div>
+            </div>
+            <div class="side">
+                <div>1 star</div>
+            </div>
+            <div class="middle">
+                <div class="bar-container">
+                    <div class="bar-1"></div>
+                </div>
+            </div>
+            <div class="side right">
+                <div id="no_rate_1">20</div>
+            </div>
+        </div>
+
+    </div>
     <footer class="container-fluid">
-        <h3>About us</h3>
-        <p>1. Dao Dang Huy - 20176782</p>
-        <p>2. Nguyen Thi Hai Thanh - 20176871</p>
+        <div class="container">
+            <h3 style="text-align: center;">About us</h3>
+            <div class="row">
+                <div class="col-sm-4"></div>
+                <div class="col-sm-4">
+                    <p>1. Dao Dang Huy - 20176782</p>
+                    <p>2. Nguyen Thi Hai Thanh - 20176871</p>
+                </div>
+            </div>
+        </div>
     </footer>
 
 </body>
@@ -71,11 +147,10 @@
 
 </script>
 <script>
-
     window.addEventListener("DOMContentLoaded", function (e) {
         var maze = new Mazing("maze");
     }, false);
-
 </script>
+<script src="vote.js"></script>
 
 </html>
