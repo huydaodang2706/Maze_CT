@@ -1,8 +1,26 @@
-<link rel="stylesheet" type="text/css" href="./maze.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="./mazecss.css">
 
-<div id="maze_container">
+<div id="header">
+  <div id="before-play-game">
+    <div id="select-size" class="button btn btn-primary">Select size</div>
+    <div id="start-game" class="button btn btn-primary">Start</div>
+  </div> <!--end before-play-game-->
 
+  <div id="space"></div>
+
+  <div reset-game>
+    <div id="try-again" class="button btn btn-primary">Try Again</div>
+    <div id="new-game" class="button btn btn-primary">New game</div>
+  </div> <!--end reset-game-->
+</div> <!--end header-->
+
+<div id="content">
+  <div id="maze_container">  
+  </div>
 </div>
+
 
 <script src="./maze.js"></script>
 <script src="./mazebuilder.js"></script>
@@ -15,7 +33,7 @@
 </script>
 <script>
 
-  window.addEventListener("DOMContentLoaded", function(e) {
+  window.addEventListener("DOMContentLoaded", function (e) {
     var maze = new Mazing("maze");
   }, false);
 
