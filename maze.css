@@ -27,12 +27,17 @@
   background-color: #8f93ad;
 }
 
-#try-again, #new-game {
+#try-again, #new-game{
   transform: translate(0%, 50%);
-  background-color: #8f93ad;
+  background-color: #83869e;
   width: 10em;
   height: 2.5em;
   color: white;
+}
+
+#input-size {
+  transform: translate(0%, 20%);
+  text-align: left;
 }
 
 #large-space {
