@@ -233,9 +233,10 @@ class MazeBuilder {
   
       let fr, fc;
       [fr, fc] = this.getKeyLocation();
-  
+      console.log(fr+"--------"+fc);
       this.maze[fr][fc] = ["key"];
-  
+      this.fr = fr;
+      this.fc = fc;
     }
   
     display(id) {

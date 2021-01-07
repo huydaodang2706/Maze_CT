@@ -20,6 +20,7 @@ function Position(x, y) {
     this.mazeMessage.id = "maze_message";
   
     this.heroScore = this.mazeContainer.getAttribute("data-steps") - 2;
+    this.initScore = this.heroScore;
   
     this.maze = [];
     this.heroPos = {};
@@ -28,6 +29,7 @@ function Position(x, y) {
   
     this.utter = null;
   
+ 
     for(i=0; i < this.mazeContainer.children.length; i++) {
       for(j=0; j < this.mazeContainer.children[i].children.length; j++) {
         var el =  this.mazeContainer.children[i].children[j];
@@ -39,7 +41,8 @@ function Position(x, y) {
         }
       }
     }
-  
+    this.initHeroPos = this.heroPos;
+
     var mazeOutputDiv = document.createElement("div");
     mazeOutputDiv.id = "maze_output";
   
@@ -54,7 +57,10 @@ function Position(x, y) {
     // activate control keys
     this.keyPressHandler = this.mazeKeyPressHandler.bind(this);
     document.addEventListener("keydown", this.keyPressHandler, false);
+
   };
+  
+  
   
   Mazing.prototype.enableSpeech = function() {
     this.utter = new SpeechSynthesisUtterance()
@@ -100,7 +106,7 @@ function Position(x, y) {
   };
   
   Mazing.prototype.tryMoveHero = function(pos) {
-  
+
     if("object" !== typeof this.maze[pos]) {
       return;
     }
