@@ -1,122 +1,285 @@
+.game-logo {
+  height: 65px;
+  font-size: 30px;
+  line-height: 100% !important;
+}
+
+.fa {
+  padding: 5px;
+  font-size: 15px;
+  width: 35px;
+  text-align: center;
+  text-decoration: none;
+  margin-right: 5px;
+}
+
+.fa:hover {
+  opacity: 0.7;
+}
+
+.fa-facebook {
+  background: #3B5998;
+  color: white;
+}
+
+.button {
+  background-image: radial-gradient(circle at 0% 0%, transparent 50%, rgba(0, 0, 0, 0.1) 50%), radial-gradient(circle at center, rgba(0, 0, 0, 0.1) 50%, transparent 50%);
+  background-color: #8f93ad;
+}
+
+#try-again, #new-game{
+  transform: translate(0%, 50%);
+  background-color: #83869e;
+  width: 10em;
+  height: 2.5em;
+  color: white;
+}
+
+#input-size {
+  transform: translate(0%, 20%);
+  text-align: left;
+}
+
+#large-space {
+  height: 20%;
+}
+
+#space {
+  height: 2%;
+}
+
+/* Remove the navbar's default margin-bottom and rounded borders */
+
+.navbar {
+  margin-bottom: 0;
+  border-radius: 0;
+}
+
+/* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+
+.row.content {
+  height: 450px
+}
+
+/* Set gray background color and 100% height */
+
+.sidenav {
+  padding-top: 20px;
+  height: 100%;
+}
+
+/* Set black background color, white text and some padding */
+
+footer {
+  background-color: #555;
+  color: white;
+  padding: 15px;
+}
+
+/* On small screens, set height to 'auto' for sidenav and grid */
+
+@media screen and (max-width: 767px) {
+  .sidenav {
+    height: auto;
+    padding: 15px;
+  }
+  .row.content {
+    height: auto;
+  }
+}
+
 #maze_container {
-    position: relative;
-    display: inline-block;
-  }
-  #maze {
-    position: relative;
-    background-color: #a7c53f;
-    background-image: radial-gradient(circle at 0% 0%, transparent 50%, rgba(0,0,0,0.1) 50%), radial-gradient(circle at center, rgba(0,0,0,0.1) 50%, transparent 50%), radial-gradient(circle at 100% 100%, transparent 50%, rgba(0,0,0,0.1) 50%), radial-gradient(circle at 0% 100%, transparent 50%, rgba(0,0,0,0.1) 50%), radial-gradient(circle at 100% 0%, transparent 50%, rgba(0,0,0,0.1) 50%);
-    background-size: 8em 8em;
-  }
-  #maze div {
-    display: flex;
-  }
-  #maze div div {
-    position: relative;
-    width: 1em;
-    height: 1em;
-  }
-  #maze div div::after {
-    position: absolute;
-    left: -3px;
-    top: -4px;
-    text-align: center;
-    text-shadow: 0 0 1px black;
-    font-size: 1.2em;
-    z-index: 10;
-  }
-  #maze div div.door.exit::after {
-    content: "\1F6AA";
-  }
-  #maze div div.nubbin::after {
-    content: "\1F33C";
-  }
-  #maze div.nubbin:nth-of-type(3n)::after {
-    content: "\1F344";
-  }
-  #maze div.nubbin:nth-of-type(5n)::after {
-    content: "\1F33B";
-  }
-  #maze div.nubbin:nth-of-type(7n)::after {
-    content: "\1F48E";
-  }
-  #maze div.nubbin:nth-of-type(13n)::after {
-    content: "\1F381";
-  }
-  #maze div.hero::after {
-    content: "\1F6B6" !important;
-  }
-  #maze.face-right div.hero::after {
-    transform: scale(-1, 1);
-  }
-  #maze div div.wall, #maze div div.nubbin.wall, #maze div div.door.exit {
-    background-color: #454545;
-    background-image: linear-gradient(45deg, rgba(0,0,0,0.2) 45%, transparent 55%), linear-gradient(to bottom, rgba(0,0,0,0.2) 45%, transparent 55%);
-    background-size: 0.5em 0.5em;
-  }
-  #maze div div.nubbin.wall::after {
-    content: "";
-  }
-  #maze div div.sentinel.wall {
-    background: transparent;
-  }
-  #maze div div.sentinel.wall::after {
-    content: "\1F40A";
-  }
-  #maze div.sentinel.wall:nth-of-type(3n)::after {
-    content: "\1F40D";
-  }
-  #maze div div.key::after {
-    content: "\1F511";
-  }
-  
-  #maze div div:nth-child(odd) {
-    width: 1em;
-  }
-  #maze div:nth-child(odd) div {
-    height: 1em;
-  }
-  
-  #maze.finished::after {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    content: "Game Over";
-    background: rgba(0,0,0,0.4);
-    text-transform: uppercase;
-    font-family: monospace;
-    font-size: 5em;
-    text-shadow: 2px 2px 2px rgba(0,0,0,0.8);
-    color: #fff;
-    z-index: 10;
-  }
-  
-  #maze_output {
-    display: flex;
-    margin: 0.5em auto;
-  }
-  #maze_score, #maze_message {
-    font-family: fantasy;
-    font-weight: bold;
-    font-size: 1em;
-  }
-  #maze_score {
-    flex: 1;
-    white-space: nowrap;
-    text-align: left;
-  }
-  #maze_score::before {
-    content: "Score: ";
-  }
-  #maze_score.has-key::after {
-    content: "\00a0\1F511";
-  }
-  #maze_message {
-    flex: 3;
-    text-align: right;
-  }
+  transform: translate(40%, 10%);
+  position: relative;
+  display: inline-block;
+}
+
+#maze {
+  position: relative;
+  background-color: #8f93ad;
+  background-image: radial-gradient(circle at 0% 0%, transparent 50%, rgba(0, 0, 0, 0.1) 50%), radial-gradient(circle at center, rgba(0, 0, 0, 0.1) 50%, transparent 50%), radial-gradient(circle at 100% 100%, transparent 50%, rgba(0, 0, 0, 0.1) 50%), radial-gradient(circle at 0% 100%, transparent 50%, rgba(0, 0, 0, 0.1) 50%), radial-gradient(circle at 100% 0%, transparent 50%, rgba(0, 0, 0, 0.1) 50%);
+  background-size: 8em 8em;
+}
+
+#maze div {
+  display: flex;
+}
+
+#maze div div {
+  position: relative;
+  width: 1em;
+  height: 1em;
+}
+
+#maze div div::after {
+  position: absolute;
+  left: -3px;
+  top: -4px;
+  text-align: center;
+  text-shadow: 0 0 1px black;
+  font-size: 1.2em;
+  z-index: 10;
+}
+
+#maze div div.door.exit::after {
+  content: "\1F6AA";
+}
+
+#maze div div.nubbin::after {
+  content: "\1F33C";
+}
+
+#maze div.nubbin:nth-of-type(3n)::after {
+  content: "\1F344";
+}
+
+#maze div.nubbin:nth-of-type(5n)::after {
+  content: "\1F33B";
+}
+
+#maze div.nubbin:nth-of-type(7n)::after {
+  content: "\1F48E";
+}
+
+#maze div.nubbin:nth-of-type(13n)::after {
+  content: "\1F381";
+}
+
+#maze div.hero::after {
+  content: "\1F6B6" !important;
+}
+
+#maze.face-right div.hero::after {
+  transform: scale(-1, 1);
+}
+
+#maze div div.wall, #maze div div.nubbin.wall, #maze div div.door.exit {
+  background-color: #454545;
+  background-image: linear-gradient(45deg, rgba(0, 0, 0, 0.2) 45%, transparent 55%), linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 45%, transparent 55%);
+  background-size: 0.5em 0.5em;
+}
+
+#maze div div.nubbin.wall::after {
+  content: "";
+}
+
+#maze div div.sentinel.wall {
+  background: transparent;
+}
+
+#maze div div.sentinel.wall::after {
+  content: "\1F40A";
+}
+
+#maze div.sentinel.wall:nth-of-type(3n)::after {
+  content: "\1F40D";
+}
+
+#maze div div.key::after {
+  content: "\1F511";
+}
+
+#maze div div:nth-child(odd) {
+  width: 1em;
+}
+
+#maze div:nth-child(odd) div {
+  height: 1em;
+}
+
+#maze.finished::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  content: "You Win!!";
+  background: rgba(0, 0, 0, 0.4);
+  text-transform: uppercase;
+  font-family: monospace;
+  font-size: 5em;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.8);
+  color: #fff;
+  z-index: 10;
+}
+
+#maze.gameover::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  content: "Game Over";
+  background: rgba(0, 0, 0, 0.4);
+  text-transform: uppercase;
+  font-family: monospace;
+  font-size: 5em;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.8);
+  color: #fff;
+  z-index: 10;
+}
+
+#maze_output {
+  display: flex;
+  margin: 0.5em auto;
+}
+
+#maze_score, #maze_message {
+  font-family: fantasy;
+  font-weight: bold;
+  font-size: 1em;
+}
+
+#maze_score {
+  flex: 1;
+  white-space: nowrap;
+  text-align: left;
+}
+
+#maze_score::before {
+  content: "Score: ";
+}
+
+#maze_score.has-key::after {
+  content: "\00a0\1F511";
+}
+
+#maze_message {
+  flex: 3;
+  text-align: right;
+}
+
+.animate {
+  transition: all 0.1s;
+  -webkit-transition: all 0.1s;
+}
+
+.action-button {
+  position: relative;
+  padding: 10px 40px;
+  margin: 0px 10px 10px 0px;
+  float: left;
+  border-radius: 10px;
+  font-family: 'Pacifico', cursive;
+  font-size: 25px;
+  color: #FFF;
+  text-decoration: none;
+}
+
+.blue {
+  background-color: #3498DB;
+  border-bottom: 5px solid #2980B9;
+  text-shadow: 0px -2px #2980B9;
+}
+
+.action-button:active {
+  transform: translate(0px, 5px);
+  -webkit-transform: translate(0px, 5px);
+  border-bottom: 1px solid;
+}
