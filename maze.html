@@ -21,13 +21,13 @@
                 <ul class="nav navbar-nav">
                     <li class="active"><a class="game-logo" href="#">MazeGo!</a></li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
+                <ul class="nav navbar-nav navbar-right" >
                     <li>
                         <a href="https://www.facebook.com/sharer/sharer.php?
                         app_id=701373587232785&sdk=joey&u=https://github.com/huydaodang2706/Maze_CT/&display=popup&ref=plugin&src=share_button"
-                        onclick="return !window.open(this.href, 'Facebook', 'width=640,height=580')">
-                        <span class="fa fa-facebook"></span>Share</a>
-                        </a>
+                        onclick="return !window.open(this.href, 'Facebook', 'width=640,height=580')" id="share_button" style="display: flex;flex-direction: row;
+                        justify-content: space-between;">
+                        <span class="fa fa-facebook"></span>Share(<div id=share_count></div>)</a>
                     </li>
                 </ul>
             </div>
@@ -191,6 +191,16 @@
         }      
 
     }, false);
+
+    var share_count = document.getElementById('share_count');
+    var share_button = document.getElementById('share_button');
+    share_count.innerHTML = 10;
+    share_button.addEventListener("click",increase_share_count);
+
+    function increase_share_count(){
+        share_count.innerHTML ++;
+    }
+
 </script>
 <script src="vote.js"></script>
 
