@@ -166,13 +166,14 @@
             maze.heroPos = maze.initHeroPos;
             maze.maze[maze.initHeroPos].classList.add("hero");
 
-            
-            console.log(Maze.fr+"..."+Maze.fc);
             var keyPos = new Position(Maze.fr, Maze.fc);
             if(!maze.maze[keyPos].classList.contains("key")){
                 maze.maze[keyPos].classList.add("key");
             };
             maze.mazeScore.classList.remove("has-key");
+            document.addEventListener("keydown", maze.keyPressHandler, false);
+            maze.mazeContainer.classList.remove("gameover");
+
         };
   
         var newGame = document.getElementById('new-game');

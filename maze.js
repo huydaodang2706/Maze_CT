@@ -27,9 +27,6 @@ function Position(x, y) {
     this.heroHasKey = false;
     this.childMode = false;
   
-    this.utter = null;
-  
- 
     for(i=0; i < this.mazeContainer.children.length; i++) {
       for(j=0; j < this.mazeContainer.children[i].children.length; j++) {
         var el =  this.mazeContainer.children[i].children[j];
@@ -61,26 +58,9 @@ function Position(x, y) {
   };
   
   
-  
-  Mazing.prototype.enableSpeech = function() {
-    this.utter = new SpeechSynthesisUtterance()
-    this.setMessage(this.mazeMessage.innerText);
-  };
-  
   Mazing.prototype.setMessage = function(text) {
     this.mazeMessage.innerHTML = text;
     this.mazeScore.innerHTML = this.heroScore;
-    if(this.utter) {
-      this.utter.text = text;
-      window.speechSynthesis.cancel();
-      window.speechSynthesis.speak(this.utter);
-    }
-  };
-  
-  Mazing.prototype.heroTakeTreasure = function() {
-    this.maze[this.heroPos].classList.remove("nubbin");
-    this.heroScore += 10;
-    this.setMessage("yay, treasure!");
   };
   
   Mazing.prototype.heroTakeKey = function() {
@@ -95,14 +75,20 @@ function Position(x, y) {
     // de-activate control keys
     document.removeEventListener("keydown", this.keyPressHandler, false);
     this.setMessage(text);
-    this.mazeContainer.classList.add("finished");
+    this.mazeContainer.classList.add("gameover");
   };
   
+  Mazing.prototype.WinGame = function(text) {
+    // de-activate control keys
+    document.removeEventListener("keydown", this.keyPressHandler, false);
+    this.setMessage(text);
+    this.mazeContainer.classList.add("finished");
+  };
+
   Mazing.prototype.heroWins = function() {
     this.mazeScore.classList.remove("has-key");
     this.maze[this.heroPos].classList.remove("door");
-    this.heroScore += 50;
-    this.gameOver("you finished !!!");
+    this.WinGame("you finished !!!");
   };
   
   Mazing.prototype.tryMoveHero = function(pos) {
@@ -114,15 +100,6 @@ function Position(x, y) {
     var nextStep = this.maze[pos].className;
   
     // before moving
-    if(nextStep.match(/sentinel/)) {
-      this.heroScore = Math.max(this.heroScore - 5, 0);
-      if(!this.childMode && this.heroScore <= 0) {
-        this.gameOver("sorry, you didn't make it");
-      } else {
-        this.setMessage("ow, that hurt!");
-      }
-      return;
-    }
     if(nextStep.match(/wall/)) {
       return;
     }
@@ -141,10 +118,7 @@ function Position(x, y) {
     this.heroPos = pos;
   
     // after moving
-    if(nextStep.match(/nubbin/)) {
-      this.heroTakeTreasure();
-      return;
-    }
+    
     if(nextStep.match(/key/)) {
       this.heroTakeKey();
       return;
@@ -153,10 +127,9 @@ function Position(x, y) {
       return;
     }
     if(this.heroScore >= 1) {
-      if(!this.childMode) {
-        this.heroScore--;
-      }
-      if(!this.childMode && (this.heroScore <= 0)) {
+      this.heroScore--;
+      
+      if(this.heroScore <= 0) {
         this.gameOver("sorry, you didn't make it");
       } else {
         this.setMessage("...");
@@ -194,8 +167,4 @@ function Position(x, y) {
     e.preventDefault();
   };
   
-  Mazing.prototype.setChildMode = function() {
-    this.childMode = true;
-    this.heroScore = 0;
-    this.setMessage("collect all the treasure");
-  };
+  
