@@ -1,3 +1,79 @@
+const rating_container = document.querySelector('.rating__');
+rating_container.insertAdjacentHTML('beforeend',`<div class="container rating_container">
+<span class="heading">User Rating</span>
+<span id="rating_button">
+	<input type="radio" name="rating" value="1" class="fa fa-star" id="rate_1"></input>
+	<input type="radio" name="rating" value="2" class="fa fa-star" id="rate_2"></input>
+	<input type="radio" name="rating" value="3" class="fa fa-star" id="rate_3"></input>
+	<input type="radio" name="rating" value="4" class="fa fa-star" id="rate_4"></input>
+	<input type="radio" name="rating" value="5" class="fa fa-star" id="rate_5"></input>
+</span>
+<p>
+<div id="avg_star" style="display: inline"></div> average based on
+<div id="review_nos" style="display: inline"></div> reviews.</p>
+<hr style="border:3px solid #f1f1f1">
+
+<div class="row">
+	<div class="side">
+		<div>5 star</div>
+	</div>
+	<div class="middle">
+		<div class="bar-container">
+			<div class="bar-5"></div>
+		</div>
+	</div>
+	<div class="side right">
+		<div id="no_rate_5">150</div>
+	</div>
+	<div class="side">
+		<div>4 star</div>
+	</div>
+	<div class="middle">
+		<div class="bar-container">
+			<div class="bar-4"></div>
+		</div>
+	</div>
+	<div class="side right">
+		<div id="no_rate_4">63</div>
+	</div>
+	<div class="side">
+		<div>3 star</div>
+	</div>
+	<div class="middle">
+		<div class="bar-container">
+			<div class="bar-3"></div>
+		</div>
+	</div>
+	<div class="side right">
+		<div id="no_rate_3">15</div>
+	</div>
+	<div class="side">
+		<div>2 star</div>
+	</div>
+	<div class="middle">
+		<div class="bar-container">
+			<div class="bar-2"></div>
+		</div>
+	</div>
+	<div class="side right">
+		<div id="no_rate_2">6</div>
+	</div>
+	<div class="side">
+		<div>1 star</div>
+	</div>
+	<div class="middle">
+		<div class="bar-container">
+			<div class="bar-1"></div>
+		</div>
+	</div>
+	<div class="side right">
+		<div id="no_rate_1">20</div>
+	</div>
+</div>
+
+</div>
+`);
+
 var radios = document.querySelectorAll('#rating_button input[type=radio]');
 var output = document.querySelector('#star_rating output');
 var bar1 = document.querySelector('.bar-1');
@@ -14,7 +90,9 @@ var avg_star = document.getElementById('avg_star');
 var review_nos = document.getElementById('review_nos');
 
 // Initial rating number, user rating
-var rates = [3,2,2,10,5]
+var rates = document.querySelector('.rating__').getAttribute('rates');
+var rates = rates.split("-").map(x=>+x);
+console.log(rates);
 var user_rating = null;
 
 var total_ratings = rates.reduce((a, b) => a + b, 0); 

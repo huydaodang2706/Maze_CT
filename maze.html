@@ -23,11 +23,10 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right" >
                     <li>
-                        <a href="https://www.facebook.com/sharer/sharer.php?
-                        app_id=701373587232785&sdk=joey&u=https://github.com/huydaodang2706/Maze_CT/&display=popup&ref=plugin&src=share_button"
+                        <a href="https://www.facebook.com/sharer/sharer.php?app_id=701373587232785&sdk=joey&u=https://github.com/huydaodang2706/Maze_CT/&display=popup&ref=plugin&src=share_button"
                         onclick="return !window.open(this.href, 'Facebook', 'width=640,height=580')" id="share_button" style="display: flex;flex-direction: row;
                         justify-content: space-between;">
-                        <span class="fa fa-facebook"></span>Share(<div id=share_count></div>)</a>
+                        <span class="fa fa-facebook"></span>Share(<div id=share_count value="10"></div>)</a>
                     </li>
                 </ul>
             </div>
@@ -37,7 +36,7 @@
     <div class="container text-center">
         <div class="row content">
             <div class="col-sm-8 text-left">
-                <div id="maze_container">
+                <div id="maze_container" width="16" height="12">
 
                 </div>
             </div>
@@ -52,78 +51,8 @@
             </div>
         </div>
     </div>
-    <div class="container rating_container">
-        <span class="heading">User Rating</span>
-        <span id="rating_button">
-            <input type="radio" name="rating" value="1" class="fa fa-star" id="rate_1"></input>
-            <input type="radio" name="rating" value="2" class="fa fa-star" id="rate_2"></input>
-            <input type="radio" name="rating" value="3" class="fa fa-star" id="rate_3"></input>
-            <input type="radio" name="rating" value="4" class="fa fa-star" id="rate_4"></input>
-            <input type="radio" name="rating" value="5" class="fa fa-star" id="rate_5"></input>
-        </span>
-        <p>
-        <div id="avg_star" style="display: inline"></div> average based on
-        <div id="review_nos" style="display: inline"></div> reviews.</p>
-        <hr style="border:3px solid #f1f1f1">
-
-        <div class="row">
-            <div class="side">
-                <div>5 star</div>
-            </div>
-            <div class="middle">
-                <div class="bar-container">
-                    <div class="bar-5"></div>
-                </div>
-            </div>
-            <div class="side right">
-                <div id="no_rate_5">150</div>
-            </div>
-            <div class="side">
-                <div>4 star</div>
-            </div>
-            <div class="middle">
-                <div class="bar-container">
-                    <div class="bar-4"></div>
-                </div>
-            </div>
-            <div class="side right">
-                <div id="no_rate_4">63</div>
-            </div>
-            <div class="side">
-                <div>3 star</div>
-            </div>
-            <div class="middle">
-                <div class="bar-container">
-                    <div class="bar-3"></div>
-                </div>
-            </div>
-            <div class="side right">
-                <div id="no_rate_3">15</div>
-            </div>
-            <div class="side">
-                <div>2 star</div>
-            </div>
-            <div class="middle">
-                <div class="bar-container">
-                    <div class="bar-2"></div>
-                </div>
-            </div>
-            <div class="side right">
-                <div id="no_rate_2">6</div>
-            </div>
-            <div class="side">
-                <div>1 star</div>
-            </div>
-            <div class="middle">
-                <div class="bar-container">
-                    <div class="bar-1"></div>
-                </div>
-            </div>
-            <div class="side right">
-                <div id="no_rate_1">20</div>
-            </div>
-        </div>
-
+    <div class="rating__" rates="3-2-2-10-5">
+    
     </div>
     <footer class="container-fluid">
         <div class="container">
@@ -141,67 +70,8 @@
 </body>
 <script src="./maze.js"></script>
 <script src="./mazebuilder.js"></script>
-<script>
-
-    let Maze = new MazeBuilder(16, 12);
-    Maze.placeKey();
-    Maze.display("maze_container");
-
-</script>
-<script>
-    window.addEventListener("DOMContentLoaded", function (e) {
-        var maze = new Mazing("maze");
-        console.log(maze.initHeroPos);
-        var tryAgain = document.getElementById('try-again');
-
-        tryAgain.addEventListener("click",tryAgainFunc);
-
-        function tryAgainFunc(){
-            maze.heroScore = maze.initScore;
-            maze.setMessage("first find the key");
-
-            maze.maze[maze.heroPos].classList.remove("hero");
-            maze.mazeContainer.classList.remove("face-right");
-            maze.heroPos = maze.initHeroPos;
-            maze.maze[maze.initHeroPos].classList.add("hero");
-
-            var keyPos = new Position(Maze.fr, Maze.fc);
-            if(!maze.maze[keyPos].classList.contains("key")){
-                maze.maze[keyPos].classList.add("key");
-            };
-            maze.mazeScore.classList.remove("has-key");
-            document.addEventListener("keydown", maze.keyPressHandler, false);
-            maze.mazeContainer.classList.remove("gameover");
-
-        };
-  
-        var newGame = document.getElementById('new-game');
-        var maze_container = document.getElementById('maze_container');
-
-        newGame.addEventListener("click",newGameFunc);
-
-        function  newGameFunc(){
-            while (maze_container.firstChild) {
-                maze_container.removeChild(maze_container.lastChild);
-            }
-            Maze = new MazeBuilder(16, 12);
-            Maze.placeKey();
-            Maze.display("maze_container");
-            maze = new Mazing("maze");
-        }      
-
-    }, false);
-
-    var share_count = document.getElementById('share_count');
-    var share_button = document.getElementById('share_button');
-    share_count.innerHTML = 10;
-    share_button.addEventListener("click",increase_share_count);
-
-    function increase_share_count(){
-        share_count.innerHTML ++;
-    }
-
-</script>
+<script src="maze_display.js"></script>
+<script src="share.js"></script>
 <script src="vote.js"></script>
 
 </html>
